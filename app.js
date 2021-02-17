@@ -1,3 +1,4 @@
+// recouper les emements
 let pocémonId= document.querySelector(".poke-id")
  let pocémonName = document.querySelector('.poke-name');
  let pocémonFristType = document.querySelector('.poke-type-one');
@@ -10,25 +11,27 @@ let pocémonTypes =document.querySelector(".stats__types")
  let leftScreen =document.querySelector(".main-screen")
 let PrevButton =document.querySelector(".left-button")
 let nextButton =document.querySelector(".right-button")
-let nextUrl=null
+// .......................................................................................
+
+  let nextUrl=null
   let prevUrl =null
-const  fetch_data = {
+  // ...................................
+  // fetch function
+    const  fetch_data = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     }
-  };
-fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",fetch_data )
-.then(function (response) {
-  return response.json();
-})
-.then (function (data){
-  console.log(data)
-   nextUrl = data.next;
-   prevUrl = data.previous;
-  //  console.log(prevUrl)
- 
- 
+      };
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",fetch_data )
+    .then(function (response) {
+     return response.json();
+      })
+      .then (function (data){
+  
+        nextUrl = data.next;
+         prevUrl = data.previous;
+
   let index=0
   let listItems =Array.from(document.getElementsByClassName("list-item"))
   listItems.forEach(listItem=>{
@@ -101,13 +104,15 @@ console.log(nom)
       .then(function(response) {
         return  response.json()
       .then(function (data){
+        console.log(data)
+        let pocId=data.id
+        console.log(pocId)
         let name=data.name
         let weight = data.weight
         let height = data.height
         let frontImage= data.sprites.front_default
         let backImage=data.sprites.back_default
         // afficher les data
-        pocémonId.innerHTML=`<span class="poke-id">"${id}"</span>`
         pocémonName.innerHTML=`<span class="poke-name">"${name}"</span>`
         pocémonImages.innerHTML=` <div class="screen__image">
         <img src="${frontImage}" class="poke-front-image" alt="front">
@@ -116,14 +121,75 @@ console.log(nom)
         pocémonWeight.innerHTML=` <span class="poke-weight">"${weight}"</span>`
         pocémonHeight.innerHTML=` <span class="poke-height">"${height}"</span>`
           // types
-          let type1=data.types[0].type.name
-          pocémonFristType.textContent=type1
-          if(!data.types[1]){
-            pocémonSecType.style.display="none"
-         }else{
-          let type2=data.types[1].type.name
-          pocémonSecType.textContent=type2
-         }
+          
+          pocémonFristType.textContent=data.types[0].type.name
+
+          pocémonSecType.style.display="none"
+         
+      
+         console.log(pocémonFristType.textContent)
+
+
+        //  chnger le backgraoundColor avec le type
+        let type=pocémonFristType.textContent
+       switch(type){
+         case "normal":
+          leftScreen.classList.add("normal")
+          break;
+          case "fighting":
+          leftScreen.classList.add("fighting")
+          break;
+          case "flying":
+          leftScreen.classList.add("flying")
+          break;
+          case "poison":
+          leftScreen.classList.add("poison")
+          break;
+          case "ground":
+          leftScreen.classList.add("ground")
+          break;
+          case "rock":
+          leftScreen.classList.add("rock")
+          break;
+          case "bug":
+          leftScreen.classList.add("bug")
+          break;
+          case "ghost":
+          leftScreen.classList.add("ghost")
+          break;
+          case "steel":
+          leftScreen.classList.add("steel")
+          break;
+          case "fire":
+          leftScreen.classList.add("fire")
+          break;
+          case "water":
+          leftScreen.classList.add("water")
+          break;
+          case "grass":
+          leftScreen.classList.add("grass")
+          break;
+          case "electric":
+          leftScreen.classList.add("electric")
+          break;
+          case "grass":
+          leftScreen.classList.add("grass")
+          break;
+          case "psychic":
+          leftScreen.classList.add("psychic")
+          break;
+          case "ice":
+          leftScreen.classList.add("ice")
+          break;
+          case "dragon":
+          leftScreen.classList.add("dragon")
+          break;
+          case "dark":
+          leftScreen.classList.add("dark")
+          break;
+         
+       }
+     
         })
       })
     })
