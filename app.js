@@ -15,6 +15,7 @@ let nextButton =document.querySelector(".right-button")
 
   let nextUrl=null
   let prevUrl =null
+  let type =" "
   // ...................................
   // fetch function
     const  fetch_data = {
@@ -131,64 +132,8 @@ console.log(nom)
 
 
         //  chnger le backgraoundColor avec le type
-        let type=pocémonFristType.textContent
-       switch(type){
-         case "normal":
-          leftScreen.classList.add("normal")
-          break;
-          case "fighting":
-          leftScreen.classList.add("fighting")
-          break;
-          case "flying":
-          leftScreen.classList.add("flying")
-          break;
-          case "poison":
-          leftScreen.classList.add("poison")
-          break;
-          case "ground":
-          leftScreen.classList.add("ground")
-          break;
-          case "rock":
-          leftScreen.classList.add("rock")
-          break;
-          case "bug":
-          leftScreen.classList.add("bug")
-          break;
-          case "ghost":
-          leftScreen.classList.add("ghost")
-          break;
-          case "steel":
-          leftScreen.classList.add("steel")
-          break;
-          case "fire":
-          leftScreen.classList.add("fire")
-          break;
-          case "water":
-          leftScreen.classList.add("water")
-          break;
-          case "grass":
-          leftScreen.classList.add("grass")
-          break;
-          case "electric":
-          leftScreen.classList.add("electric")
-          break;
-          case "grass":
-          leftScreen.classList.add("grass")
-          break;
-          case "psychic":
-          leftScreen.classList.add("psychic")
-          break;
-          case "ice":
-          leftScreen.classList.add("ice")
-          break;
-          case "dragon":
-          leftScreen.classList.add("dragon")
-          break;
-          case "dark":
-          leftScreen.classList.add("dark")
-          break;
-         
-       }
+        type=pocémonFristType.textContent
+        leftScreen.classList.add(type)
      
         })
       })
