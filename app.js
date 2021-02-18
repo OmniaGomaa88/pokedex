@@ -46,7 +46,7 @@ let nextButton =document.querySelector(".right-button")
   // button next
   
   .catch(function(error){
-    console.log(error)
+    // console.log(error)
     
     })
     
@@ -68,8 +68,8 @@ let nextButton =document.querySelector(".right-button")
       })
      
     })
-    console.log(nextUrl)
-    console.log(prevUrl)
+    // console.log(nextUrl)
+    // console.log(prevUrl)
     
     })
     // prev Button
@@ -88,8 +88,8 @@ let nextButton =document.querySelector(".right-button")
     index++
     })
     nextButton.style.backgroundColor="blue"
-    console.log(nextUrl)
-    console.log(prevUrl)
+    // console.log(nextUrl)
+    // console.log(prevUrl)
     })
   })
   
@@ -115,15 +115,15 @@ function pocémonInformation(){
      
       let nom =listItem.textContent
       let pocURl="https://pokeapi.co/api/v2/pokemon/"+nom
-console.log(nom)
-      console.log("hi")
+// console.log(nom)
+     
       fetch(pocURl,fetch_data)
       .then(function(response) {
         return  response.json()
       .then(function (data){
-        console.log(data)
+        // console.log(data)
         let pocId=data.id
-        console.log(pocId)
+        // console.log(pocId)
         let name=data.name
         let weight = data.weight
         let height = data.height
@@ -131,6 +131,7 @@ console.log(nom)
         let backImage=data.sprites.back_default
         // afficher les data
         pocémonName.innerHTML=`<span class="poke-name">"${name}"</span>`
+
         pocémonImages.innerHTML=` <div class="screen__image">
         <img src="${frontImage}" class="poke-front-image" alt="front">
         <img src="${backImage}" class="poke-back-image" alt="back">
@@ -139,18 +140,21 @@ console.log(nom)
         pocémonHeight.innerHTML=` <span class="poke-height">"${height}"</span>`
            // type
         pocémonFristType.textContent=data.types[0].type.name
-       console.log(pocémonFristType.textContent)
+        console.log(data.types.length)
+        console.log(data)
+      //  console.log(pocémonFristType.textContent)
       //  ......
        function secundType(){
          if(data.types.length>1){
          let typ2=data.types[1].type.name
          pocémonSecType.textContent=typ2
+         pocémonSecType.style.display="block"
        }else{
         pocémonSecType.textContent=" "
         pocémonSecType.style.display="none"
        }
       }
-secundType()
+      secundType()
 
       //  add le color de class
       function addColorType(){
@@ -159,7 +163,7 @@ secundType()
     }
       removeTypeClass()
       addColorType()
-  
+    
         })
       })
     })
