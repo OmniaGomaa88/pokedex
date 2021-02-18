@@ -18,6 +18,7 @@ let nextButton =document.querySelector(".right-button")
   let prevUrl =null
   let type =" "
   // ...................................
+  
   // fetch function
     const  fetch_data = {
     method: "GET",
@@ -69,7 +70,7 @@ let nextButton =document.querySelector(".right-button")
     })
     console.log(nextUrl)
     console.log(prevUrl)
-   
+    
     })
     // prev Button
     PrevButton.addEventListener('click',function(event){
@@ -91,7 +92,9 @@ let nextButton =document.querySelector(".right-button")
     console.log(prevUrl)
     })
   })
+  
 })
+
 // Array de tous les type 
 let pocemonTyps=['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 
     'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
@@ -134,15 +137,20 @@ console.log(nom)
       </div>`
         pocémonWeight.innerHTML=` <span class="poke-weight">"${weight}"</span>`
         pocémonHeight.innerHTML=` <span class="poke-height">"${height}"</span>`
-           // types
-          
+           // type
         pocémonFristType.textContent=data.types[0].type.name
-
-        pocémonSecType.style.display="none"
-       
-    
        console.log(pocémonFristType.textContent)
-
+      //  ......
+       function secundType(){
+         if(data.types.length>1){
+         let typ2=data.types[1].type.name
+         pocémonSecType.textContent=typ2
+       }else{
+        pocémonSecType.textContent=" "
+        pocémonSecType.style.display="none"
+       }
+      }
+secundType()
 
       //  add le color de class
       function addColorType(){
@@ -151,11 +159,14 @@ console.log(nom)
     }
       removeTypeClass()
       addColorType()
+  
         })
       })
     })
   })
 }pocémonInformation()
+
+
 
 
 
