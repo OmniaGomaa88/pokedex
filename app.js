@@ -11,6 +11,7 @@ let pocémonTypes =document.querySelector(".stats__types")
  let leftScreen =document.querySelector(".main-screen")
 let PrevButton =document.querySelector(".left-button")
 let nextButton =document.querySelector(".right-button")
+
 // .......................................................................................
 
   let nextUrl=null
@@ -71,7 +72,7 @@ let nextButton =document.querySelector(".right-button")
    
     })
     // prev Button
-    PrevButton.addEventListener('click',function(){
+    PrevButton.addEventListener('click',function(event){
       fetch(prevUrl,fetch_data)
       .then(function(response) {
         return  response.json()
@@ -91,12 +92,24 @@ let nextButton =document.querySelector(".right-button")
     })
   })
 })
+// Array de tous les type 
+let pocemonTyps=['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 
+    'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
+// remove class type
+function removeTypeClass(){
+  for(let n=0;n<pocemonTyps.length;n++){
+    let type=pocemonTyps[n]
+    leftScreen.classList.remove(type)
+  }
+  }
+
 // les information de pécomon
-function pocémonInformation(id){
+function pocémonInformation(){
   let listItems =Array.from(document.getElementsByClassName("list-item"))
   listItems.forEach(listItem=>{
     listItem.addEventListener('click',function(){
       leftScreen.classList.remove("hide")
+     
       let nom =listItem.textContent
       let pocURl="https://pokeapi.co/api/v2/pokemon/"+nom
 console.log(nom)
@@ -121,27 +134,30 @@ console.log(nom)
       </div>`
         pocémonWeight.innerHTML=` <span class="poke-weight">"${weight}"</span>`
         pocémonHeight.innerHTML=` <span class="poke-height">"${height}"</span>`
-          // types
+           // types
           
-          pocémonFristType.textContent=data.types[0].type.name
+        pocémonFristType.textContent=data.types[0].type.name
 
-          pocémonSecType.style.display="none"
-         
-      
-         console.log(pocémonFristType.textContent)
+        pocémonSecType.style.display="none"
+       
+    
+       console.log(pocémonFristType.textContent)
 
 
-        //  chnger le backgraoundColor avec le type
-        type=pocémonFristType.textContent
-        leftScreen.classList.add(type)
-     
+      //  add le color de class
+      function addColorType(){
+      type=pocémonFristType.textContent
+      leftScreen.classList.add(type)
+    }
+      removeTypeClass()
+      addColorType()
         })
       })
     })
   })
-}
+}pocémonInformation()
 
-pocémonInformation()
+
 
  
 
